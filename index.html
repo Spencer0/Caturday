@@ -1,0 +1,44 @@
+
+
+<head>
+    <title>
+        Caturday
+    </title>
+</head>
+<style>
+    #loaded-content{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40em;
+    }
+    img {
+    position: absolute;; 
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        let catfact = "";
+        let catfactDiv = document.getElementById("cat-fact");
+        let catImage = document.getElementById("cat-image");
+        console.log("Dom ready to go")
+
+        console.log(fetch("https://meowfacts.herokuapp.com/")
+        .then( x => x.json())
+        .then( x => catfactDiv.innerText = x.data[0]))
+        //.then( x => catfact = x))
+        console.log(fetch("https://api.thecatapi.com/v1/images/search")
+        .then( x => x.json())
+        .then( x => catImage.src = x[0].url))
+    });
+</script>
+<body>
+    <div id="loaded-content">
+        <image id="cat-image"/>
+        <div id="cat-fact">
+        </div>    
+    </div>
+    
+</body>
